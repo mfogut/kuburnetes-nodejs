@@ -63,4 +63,4 @@
 - 1 - Create deployment file. See nodejs-deployment.yml
 - 2 - Create service file. See nodejs-service.yml
 - 3 - Install ssh agent plugin in order to connect from Jenkins to Kuburnetes cluster.
-- 4 - 
+- 4 - Add ssh key (aws .pem file) as Jenkins Credential in order to connect from jenkins to Kuburnetes cluster
