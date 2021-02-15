@@ -22,7 +22,7 @@ pipeline {
         }
         stage("Deploy to Kuburnetes") {
             steps {
-                sh "chmod x+ changeTag.sh"
+                sh "chmod +x changeTag.sh"
                 sh "./changeTag.sh ${DOCKER_TAG}"
                 sshagent(['kops-machine']) {
                     sh "scp -o StrictHostKeyChecking=no nodejs-service.yml node-app-pod.yml ec2-user@3.90.83.176:/home/ec2-user/"
