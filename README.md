@@ -37,7 +37,7 @@
 - 5 - kops update cluster ${NAME} --yes --admin
     - kops rolling-update cluster
 
-# Install Jenkins
+# Install Jenkins, Git and Docker
 - 1 - You can install Jenkins to your Bootstrap(kops) instance or you can launch new instance.
 - 2 - Install Java in order to install Jenkins.
     - sudo yum install java-1.8.0-openjdk.x86_64 -y
@@ -48,3 +48,13 @@
 - 4 - Start and Enable Jenkins service.
     - sudo systemctl start jenkins
     - sudo systemctl enable jenkins
+- 5 - Install Git
+    - yum install git -y
+- 6 - Install Docker
+    - yum install docker -y
+- 7 - Add docker to "jenkins" and "ec2-user" users
+    - usermod -aG docker jenkins
+- 8 - Restart Jenkins service in order to apply changes.
+    - systemctl restart jenkins
+- 9 - Push image to DockerHub. In order to push image DockerHub we have to create Jenkins Credentials with docker username and password.
+- 10 - Install Docker and Docker Pipeline plugins

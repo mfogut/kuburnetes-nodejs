@@ -20,6 +20,12 @@ pipeline {
                 }
             }
         }
+        stage("Deploy to Kuburnetes") {
+            steps {
+                sh "chmod x+ changeTag.sh"
+                sh "./changeTag.sh ${DOCKER_TAG}"
+            }
+        }
     }
 }
 
