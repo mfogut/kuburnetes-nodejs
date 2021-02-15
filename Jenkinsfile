@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build Docker image') {
             steps {
-                sh "docker build -t mfogut/nodeapp:v1" 
+                sh "docker build -t . mfogut/nodeapp:v1" 
             }
         }
     }
