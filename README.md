@@ -58,3 +58,9 @@
     - systemctl restart jenkins
 - 9 - Push image to DockerHub. In order to push image DockerHub we have to create Jenkins Credentials with docker username and password.
 - 10 - Install Docker and Docker Pipeline plugins
+
+# Nodejs Deployment and Service
+- 1 - Create deployment file. See nodejs-deployment.yml
+- 2 - Create service file. See nodejs-service.yml
+- 3 - Install ssh agent plugin in order to connect from Jenkins to Kuburnetes cluster.
+- 4 - 
