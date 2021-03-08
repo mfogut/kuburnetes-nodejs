@@ -3,12 +3,12 @@
 - 2 - Create IAM Role with EC2, IAM, S3 and VPC Full Access permission.
 - 3 - Attach role that you create to EC2 instance.
 - 4 - Create a S3 bucket. Follow the steps from link https://kops.sigs.k8s.io/getting_started/aws/
-    - aws s3api create-bucket --bucket <bucket-name> --region us-east-1
+    - aws s3api create-bucket --bucket "bucket-name" --region us-east-1
 - 5 - Verify if bucket is created --> aws s3 ls
 - 6 - Enable bucket versioning to prevent accidentally deletion.
-    - aws s3api put-bucket-versioning --bucket <bucket-name> --versioning-configuration Status=Enabled
+    - aws s3api put-bucket-versioning --bucket "bucket-name" --versioning-configuration Status=Enabled
 - 7 - Enable bucket encryption
-    - aws s3api put-bucket-encryption --bucket <bucket-name> --server-side-encryption-configuration '{"Rules":[{"ApplyServerSideEncryptionByDefault":{"SSEAlgorithm":"AES256"}}]}'
+    - aws s3api put-bucket-encryption --bucket "bucket-name" --server-side-encryption-configuration '{"Rules":[{"ApplyServerSideEncryptionByDefault":{"SSEAlgorithm":"AES256"}}]}'
 
 # Install KOPS
 - 1 - Download kubectl
@@ -26,8 +26,8 @@
 
 # Create Cluster
 - 1 - First set up environment variables to make the process easier.
-    - export NAME=<cluster-name>.k8s.local
-    - export KOPS_STATE_STORE=s3://<s3-bucket-name>
+    - export NAME=cluster-name.k8s.local
+    - export KOPS_STATE_STORE=s3://s3-bucket-name
 - 2 - Create ssh key (You have to create ssh key before you create a cluster)
     - ssh-keygen
 - 3 - Create cluster
@@ -54,8 +54,10 @@
     - yum install docker -y
 - 7 - Add docker to "jenkins" and "ec2-user" users
     - usermod -aG docker jenkins
-- 8 - Restart Jenkins service in order to apply changes.
+    - usermod -aG docker ec2-user
+- 8 - Restart Jenkins and Docker service in order to apply changes.
     - systemctl restart jenkins
+    - systemctl restart docker
 - 9 - Push image to DockerHub. In order to push image DockerHub we have to create Jenkins Credentials with docker username and password.
 - 10 - Install Docker and Docker Pipeline plugins
 
